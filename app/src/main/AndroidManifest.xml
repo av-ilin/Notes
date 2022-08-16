@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="ru.lglass.notes">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Notes.Main"
+        tools:targetApi="31">
+
+        <activity
+            android:name="ru.lglass.notes.ImageActivity"
+            android:exported="false"
+            android:label="View Image"
+            android:theme="@style/Theme.Notes.ImageActivity" />
+        <activity
+            android:name="ru.lglass.notes.ChangeActivity"
+            android:exported="false"
+            android:label="Change Note" />
+        <activity
+            android:name="ru.lglass.notes.AddActivity"
+            android:exported="false"
+            android:label="Add Note" />
+        <activity
+            android:name="ru.lglass.notes.ViewActivity"
+            android:exported="false"
+            android:label="View Note" />
+        <activity
+            android:name="ru.lglass.notes.MainActivity"
+            android:exported="true"
+            android:label="Notes">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

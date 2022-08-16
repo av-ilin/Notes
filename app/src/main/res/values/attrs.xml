@@ -1,0 +1,4 @@
+<resources>
+    <attr name="text_color" format="reference" />
+    <attr name="line_color" format="reference" />
+</resources>
