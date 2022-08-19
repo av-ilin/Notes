@@ -15,26 +15,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Notes.Main"
         tools:targetApi="31">
-
         <activity
-            android:name="ru.lglass.notes.ImageActivity"
+            android:name=".GalleryActivity"
+            android:exported="false"
+            android:label="Photos"/>
+        <activity
+            android:name=".ImageActivity"
             android:exported="false"
             android:label="View Image"
             android:theme="@style/Theme.Notes.ImageActivity" />
         <activity
-            android:name="ru.lglass.notes.ChangeActivity"
+            android:name=".ChangeActivity"
             android:exported="false"
             android:label="Change Note" />
         <activity
-            android:name="ru.lglass.notes.AddActivity"
+            android:name=".AddActivity"
             android:exported="false"
             android:label="Add Note" />
         <activity
-            android:name="ru.lglass.notes.ViewActivity"
+            android:name=".ViewActivity"
             android:exported="false"
             android:label="View Note" />
         <activity
-            android:name="ru.lglass.notes.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="Notes">
             <intent-filter>

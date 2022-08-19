@@ -3,13 +3,15 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
     android:layout_marginStart="10dp">
 
     <ImageView
         android:id="@+id/ivAddImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:background="@color/black"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btDeleteImage"

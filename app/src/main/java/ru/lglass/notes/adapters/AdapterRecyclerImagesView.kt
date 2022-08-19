@@ -11,6 +11,7 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ru.lglass.notes.R
 import java.io.File
 
@@ -22,6 +23,7 @@ class AdapterRecyclerImagesView (private val images: List<String>, private val l
     class ImagesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         private val image: ImageView = itemView.findViewById(R.id.ivImageView)
         public fun bind(imagePath: String, listener: OnClick, position: Int){
+            /*
             val bMap: Bitmap
             if (File(imagePath).exists())
                 bMap = BitmapFactory.decodeFile(imagePath)
@@ -33,6 +35,12 @@ class AdapterRecyclerImagesView (private val images: List<String>, private val l
                 image.setBackgroundColor(Color.BLACK)
             }
             image.setImageBitmap(bMap)
+             */
+            Glide.with(itemView.context)
+                .load(imagePath)
+                .placeholder(R.drawable.ic_baseline_not_interested_24)
+                .error(R.drawable.ic_baseline_not_interested_24)
+                .into(image)
             image.setOnClickListener { listener.openImg(position, itemView.context) }
         }
     }

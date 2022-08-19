@@ -13,5 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:background="@color/black"/>
 </androidx.cardview.widget.CardView>

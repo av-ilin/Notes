@@ -7,12 +7,15 @@ import android.content.pm.PackageManager
 import android.database.Cursor
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_add.*
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import ru.lglass.notes.adapters.AdapterRecyclerImagesAdd
 
 class AddActivity : AppCompatActivity() {
@@ -22,21 +25,14 @@ class AddActivity : AppCompatActivity() {
 
     private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            try{
-                val data: Intent? = result.data
-                val imageUri = data!!.data
-
-                val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-                val cursor: Cursor? =
-                    contentResolver.query(imageUri!!, filePathColumn, null, null, null)
-                cursor!!.moveToFirst()
-                val columnIndex: Int = cursor.getColumnIndex(filePathColumn[0])
-                val filePath: String = cursor.getString(columnIndex)
-                cursor.close()
-
-                images.add(filePath)
-                rvImages.adapter!!.notifyItemInserted(images.size - 1)
-            }catch (e: Exception){}
+            images.clear()
+            images.addAll(result.data!!.getStringExtra("Images")!!.split("|"))
+            rvImages.adapter = AdapterRecyclerImagesAdd(images, object: AdapterRecyclerImagesAdd.OnCancelClick{
+                override fun cancel(position: Int) {
+                    images.removeAt(position)
+                    rvImages.adapter!!.notifyItemRemoved(position)
+                }
+            })
         }
     }
 
@@ -66,8 +62,7 @@ class AddActivity : AppCompatActivity() {
             PICK_FROM_GALLERY -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     Toast.makeText(this, "PERMISSION GRANTED", Toast.LENGTH_LONG).show()
-                    val intent = Intent(Intent.ACTION_PICK)
-                    intent.type = "image/*"
+                    val intent = Intent(this, GalleryActivity::class.java)
                     resultLauncher.launch(intent)
                 }
                 else
@@ -89,8 +84,7 @@ class AddActivity : AppCompatActivity() {
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), PICK_FROM_GALLERY)
             } else {
                 //val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                val intent = Intent(Intent.ACTION_PICK)
-                intent.type = "image/*"
+                val intent = Intent(this, GalleryActivity::class.java)
                 resultLauncher.launch(intent)
             }
         }
@@ -101,5 +95,16 @@ class AddActivity : AppCompatActivity() {
                 rvImages.adapter!!.notifyItemRemoved(position)
             }
         })
+        teDescription.setOnFocusChangeListener { _, b ->
+            if (b)
+                teName.visibility = View.GONE
+            else
+                teName.visibility = View.VISIBLE
+        }
+
+        KeyboardVisibilityEvent.setEventListener(this) { isOpen ->
+            if (!isOpen)
+                clAdd.requestFocus()
+        }
     }
 }

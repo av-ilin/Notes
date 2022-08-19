@@ -19,12 +19,14 @@
         <entry key="app/src/main/res/layout/activity_add.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_change.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_fullscreen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_gallery.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_image.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_note.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_view.xml" value="0.1" />
         <entry key="app/src/main/res/layout/add_alert_dialog.xml" value="0.14764492753623187" />
         <entry key="app/src/main/res/layout/item_add_image.xml" value="0.67" />
+        <entry key="app/src/main/res/layout/item_gallery.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_note.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_view_image.xml" value="0.14764492753623187" />
       </map>
